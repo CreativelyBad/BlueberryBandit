@@ -36,11 +36,7 @@ func get_input():
 #			$AnimationPlayer.play("Idle")
 	
 	if Input.is_action_just_pressed("jump"):
-		if jumps != 1:
-			velocity.y = -JUMP
-			jumps += 1
-			$AnimationPlayer.stop()
-			$AnimationPlayer.play("Jump")
+		jump()
 	
 	if Input.is_action_just_pressed("Shoot"):
 		shoot()
@@ -92,3 +88,13 @@ func _on_Player_shot() -> void:
 	hearts[health].visible = false
 	if health == 0:
 		get_tree().paused = true
+
+func jump():
+	if jumps != 1:
+		velocity.y = -JUMP
+		jumps += 1
+		$AnimationPlayer.stop()
+		$AnimationPlayer.play("Jump")
+
+func _on_AutoJumpCheck_body_entered(_body: Node) -> void:
+	jump()
