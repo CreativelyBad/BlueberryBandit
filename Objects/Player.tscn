@@ -274,5 +274,12 @@ smoothing_speed = 3.5
 
 [node name="HUD" parent="Camera2D" instance=ExtResource( 7 )]
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/ParallaxBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.054902, 0.027451, 0.105882, 1 )
+
 [connection signal="shot" from="." to="." method="_on_Player_shot"]
 [connection signal="body_entered" from="AutoJumpCheck" to="." method="_on_AutoJumpCheck_body_entered"]

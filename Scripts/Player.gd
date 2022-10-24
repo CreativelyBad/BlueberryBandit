@@ -75,6 +75,9 @@ func _physics_process(_delta: float) -> void:
 	velocity.x = SPEED
 	velocity.y += GRAVITY
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
+	if velocity == Vector2.ZERO:
+		$AnimationPlayer.play("Idle")
 
 func _ready() -> void:
 	start_pos = position
@@ -97,4 +100,5 @@ func jump():
 		$AnimationPlayer.play("Jump")
 
 func _on_AutoJumpCheck_body_entered(_body: Node) -> void:
-	jump()
+	#jump()
+	pass
