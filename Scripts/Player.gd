@@ -71,6 +71,7 @@ func _physics_process(_delta: float) -> void:
 	check_grounded()
 	get_input()
 	aim()
+	distance_counter()
 	
 	velocity.x = SPEED
 	velocity.y += GRAVITY
@@ -88,7 +89,7 @@ func _ready() -> void:
 
 func _on_Player_shot() -> void:
 	health -= 1
-	hearts[health].visible = false
+	hearts[health].texture = load("res://UI/Empty_Heart.png")
 	if health == 0:
 		get_tree().paused = true
 
@@ -102,3 +103,6 @@ func jump():
 func _on_AutoJumpCheck_body_entered(_body: Node) -> void:
 	#jump()
 	pass
+	
+func distance_counter():
+	$Camera2D/HUD/Control/DistanceCounter.text = str(int(global_position.x - start_pos.x)) + "m"
