@@ -11,6 +11,7 @@ const JUMP = 200
 const AIM_LIMIT = 45
 const MAX_HEALTH = 3
 
+onready var globals = get_node("/root/Globals")
 var start_pos
 var velocity = Vector2()
 var jumps = 0
@@ -91,7 +92,10 @@ func _on_Player_shot() -> void:
 	health -= 1
 	hearts[health].texture = load("res://UI/Empty_Heart.png")
 	if health == 0:
-		get_tree().paused = true
+		globals.global_blueberries = blueberries
+		globals.global_distance = int(global_position.x - start_pos.x)
+# warning-ignore:return_value_discarded
+		get_tree().change_scene("res://UI/DeathScreen.tscn")
 
 func jump():
 	if jumps != 1:

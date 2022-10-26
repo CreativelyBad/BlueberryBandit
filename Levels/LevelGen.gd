@@ -9,6 +9,8 @@ var chosen_tile_set = 2
 var collider_offset = Vector2.ZERO
 var tile_pos = Vector2.ZERO
 var gen_coll_padding = 300
+onready var blueberry_ref = preload("res://Objects/Blueberry.tscn")
+onready var enemy_ref = preload("res://Objects/Enemy.tscn")
 
 func _ready():
 	randomize()
@@ -21,9 +23,10 @@ func generate_level(loops : int):
 		set_cellv(tile_pos, chosen_tile_set, false, false, false, tile)
 		x += 1
 		if gen_loop == 12:
+			spawn_blueberry(Vector2(x, y))
+			spawn_enemy(Vector2(x, y))
 			gen_loop = 0
 			var rand = rand_range(0, 2)
-			#print("random: ", rand)
 			if i == 12:
 				y_change = 1
 				y += y_change
@@ -65,3 +68,15 @@ func set_gen_collider():
 	collider_offset = map_to_world(tile_pos)
 	$GenerationCollider.global_position = collider_offset
 	$GenerationCollider.global_position.x -= gen_coll_padding
+
+func spawn_blueberry(spawn_position : Vector2):
+	var new_berry = blueberry_ref.instance()
+	new_berry.global_position = map_to_world(spawn_position - Vector2(6, 1))
+	if rand_range(0, 3) < 1:
+		call_deferred("add_child", new_berry)
+		
+func spawn_enemy(spawn_position : Vector2):
+	var new_enemy = enemy_ref.instance()
+	new_enemy.global_position = map_to_world(spawn_position - Vector2(8, 1))
+	if rand_range(0, 3) < 1:
+		call_deferred("add_child", new_enemy)

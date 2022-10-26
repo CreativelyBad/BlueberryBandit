@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://UI/FFFFORWA_dynamicfont2.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/FFFFORWA_dynamicfont3.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Art/EditedTileset.png" type="Texture" id=3]
+[ext_resource path="res://UI/DeathScreen.gd" type="Script" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 1, 1, 1, 1 )
+
+[node name="DeathScreen" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 1 )
+stretch_mode = 1
+
+[node name="Main" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="Main"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -137.5
+margin_top = -51.0
+margin_right = 137.5
+margin_bottom = -23.0
+custom_fonts/font = ExtResource( 2 )
+text = "You Died"
+align = 1
+valign = 1
+
+[node name="Menu_Button" type="Button" parent="Main"]
+margin_left = 135.0
+margin_top = 129.0
+margin_right = 185.0
+margin_bottom = 150.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 1 )
+text = "Menu"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.0
+margin_top = -9.0
+margin_right = 24.0
+margin_bottom = 39.0
+
+[node name="DistanceText" type="Label" parent="Main/VBoxContainer"]
+margin_right = 48.0
+margin_bottom = 15.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 1 )
+text = "00m"
+align = 1
+valign = 1
+
+[node name="BlueBerriesText" type="Label" parent="Main/VBoxContainer"]
+margin_top = 19.0
+margin_right = 48.0
+margin_bottom = 34.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 0.101961, 0.235294, 0.458824, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "00"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="Main/Menu_Button" to="." method="_on_Menu_Button_pressed"]

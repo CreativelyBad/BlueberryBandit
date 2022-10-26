@@ -4,8 +4,10 @@ onready var main_screen = get_node("Main")
 onready var level_screen = get_node("Levels")
 
 func _on_PlayButton_pressed() -> void:
-	main_screen.visible = false
-	level_screen.visible = true
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://Levels/RandomLevel.tscn")
+#	main_screen.visible = false
+#	level_screen.visible = true
 
 
 func _on_QuitButton_pressed() -> void:
@@ -13,9 +15,7 @@ func _on_QuitButton_pressed() -> void:
 
 
 func _on_Lvl1Btn_pressed() -> void:
-# warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Levels/Level1.tscn")
-
+	pass # Replace with function body.
 
 func _on_Lvl2Btn_pressed() -> void:
 	pass # Replace with function body.
