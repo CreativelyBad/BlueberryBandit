@@ -1,7 +1,14 @@
 extends CanvasLayer
 
+onready var globals = get_node("/root/Globals")
 onready var main_screen = get_node("Main")
 onready var level_screen = get_node("Levels")
+
+var hs_text = "High Score: "
+
+func _ready() -> void:
+	$Main/HighScoreBlueBerriesText.text = hs_text + str(globals.global_high_score_blueberries)
+	$Main/HighScoreDistanceText.text = hs_text + str(globals.global_high_score_distance) + "m"
 
 func _on_PlayButton_pressed() -> void:
 # warning-ignore:return_value_discarded
